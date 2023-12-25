@@ -1,0 +1,6 @@
+name: experiment_1
+cuda: 7
+warm_epochs: 50
+lr: 0.0001
+batch_size: 64
+max_epochs: 500
