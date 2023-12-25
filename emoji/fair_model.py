@@ -10,7 +10,7 @@ class PretrainModel(nn.Module):
         self.classifier = nn.Linear(self.encoder.config.hidden_size, 2)
     
     def forward(self, tokens, masks):
-        rep = self.encoder(input_ids=tokens, attention_mask=masks).pooler_output
+        rep = self.encoder(input_ids=tokens, attention_mask=masks)[1]
         output = self.classifier(rep)
         return output
 

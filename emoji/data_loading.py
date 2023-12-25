@@ -35,8 +35,8 @@ class PretrainDataset(data.Dataset):
         self.labels = list(self.data["label"])
     
     def __getitem__(self, index:int):
-        tokens = self.token[index]
-        mask = self.mask[index]
+        tokens = self.tokens[index]
+        mask = self.masks[index]
         label = self.labels[index]
         return tokens, mask, label
     

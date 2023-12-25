@@ -75,8 +75,8 @@ def main():
     loss_fn = nn.CrossEntropyLoss().cuda()
     lr = 1e-4
     optimizer = optim.Adam(params=model.parameters(), lr=lr, betas=(0.9, 0.999), weight_decay=1e-6)
-    args = {"batch_size": batch_size, "warm_epochs": warm_epochs, "max_epochs": max_epochs, 
-            "loss_fn": loss_fn, "optimizer": optimizer}
+    #args = {"batch_size": batch_size, "warm_epochs": warm_epochs, "max_epochs": max_epochs, 
+    #        "loss_fn": loss_fn, "optimizer": optimizer}
     pre_train([train_loader, valid_loader], model, args)
     
     #model = Model()
