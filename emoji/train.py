@@ -127,7 +127,7 @@ def pre_train(loaders, model, args):
             running_loss += loss.item()
         print("Epoch: {}\tLoss:{}".format(epoch, running_loss / len(train_loader)))
         
-        valid_loss, valid_acc = test(valid_loader, model, args)
+        valid_loss, valid_acc = pre_test(valid_loader, model, args)
         print("Validation Loss: {}\tAccuracy: {}".format(valid_loss, valid_acc))
         
         scheduler.step()

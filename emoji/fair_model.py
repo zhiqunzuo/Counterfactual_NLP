@@ -24,7 +24,23 @@ class TestModel(nn.Module):
         rep_1 = self.encoder(input_ids=tokens, attention_mask=masks)[1]
         rep_2 = self.encoder(input_ids=c_tokens, attention_mask=c_masks)[1]
         rep = (rep_1 + rep_2) / 2
-        return rep_1, rep
+        return rep_1, rep_2
+
+class MultiTestModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.encoder = BertModel.from_pretrained("bert-base-uncased")
+    
+    def forward(self, tokens, mask, c1_tokens, c1_mask, c2_tokens, c2_mask, c3_tokens, c3_mask,
+                c4_tokens, c4_mask, c5_tokens, c5_mask):
+        rep_0 = self.encoder(input_ids=tokens, attention_mask=mask)[1]
+        rep_1 = self.encoder(input_ids=c1_tokens, attention_mask=c1_mask)[1]
+        rep_2 = self.encoder(input_ids=c2_tokens, attention_mask=c2_mask)[1]
+        rep_3 = self.encoder(input_ids=c3_tokens, attention_mask=c3_mask)[1]
+        rep_4 = self.encoder(input_ids=c4_tokens, attention_mask=c4_mask)[1]
+        rep_5 = self.encoder(input_ids=c5_tokens, attention_mask=c5_mask)[1]
+        rep = (5 * rep_0 + rep_1 + rep_2 + rep_3 + rep_4 + rep_5) / 10
+        return rep_0, rep
 
 class Discriminator(nn.Module):
     def __init__(self, input_size):
